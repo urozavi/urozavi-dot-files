@@ -144,11 +144,22 @@ Plugin 'jiangmiao/auto-pairs'
 Plugin 'majutsushi/tagbar'
 Plugin 'amirh/HTML-AutoCloseTag'
 Plugin 'arnaud-lb/vim-php-namespace'
+Plugin 'stephpy/vim-php-cs-fixer'
 
 call vundle#end()
 filetype plugin indent on
 
 "================================================================ [ /vundle ]
+
+
+" PhpCsFixer :
+let g:php_cs_fixer_config = "default"
+let g:php_cs_fixer_dry_run = 0
+let g:php_cs_fixer_enable_default_mapping = 1
+let g:php_cs_fixer_level = "psr2"
+let g:php_cs_fixer_php_path = "php"
+let g:php_cs_fixer_verbose = 0
+"========================================================== [ /php-cs-fixer ]
 
 
 " CtrlP :
@@ -160,28 +171,31 @@ map <c-p>p :CtrlPMixed<cr>
 
 
 " Syntastic :
-set statusline+=%#warningmsg#
-set statusline+=%*
-set statusline+=%{SyntasticStatuslineFlag()}
+highlight SyntasticErrorSign ctermbg=none ctermfg=red
+highlight SyntasticStyleError ctermbg=none
+highlight SyntasticStyleWarning ctermbg=none
+highlight SyntasticStyleWarningSign ctermbg=none ctermfg=yellow
 
 let g:syntastic_aggregate_errors = 1
 let g:syntastic_always_populate_loc_list = 1
-let g:syntastic_auto_loc_list = 1
 let g:syntastic_check_on_open = 1
 let g:syntastic_check_on_wq = 0
-
 let g:syntastic_error_symbol='✗'
+let g:syntastic_html_tidy_exec = '/usr/local/bin/tidy5'
+let g:syntastic_php_phpcs_args = '--standard=PSR2'
 let g:syntastic_style_error_symbol = '✗'
 let g:syntastic_style_warning_symbol = '⚠'
 let g:syntastic_warning_symbol='⚠'
+
+set statusline+=%#warningmsg#
+set statusline+=%*
+set statusline+=%{SyntasticStatuslineFlag()}
 "============================================================= [ /syntastic ]
 
 
 " Ultisnips :
-let g:UltiSnipsExpandTrigger="<tab>"
-let g:UltiSnipsJumpForwardTrigger="<tab>"
-let g:UltiSnipsJumpBackwardTrigger="<c-b>"
 let g:UltiSnipsEditSplit="vertical"
+let g:UltiSnipsExpandTrigger="œ"
 "============================================================= [ /ultisnips ]
 
 
@@ -193,13 +207,6 @@ let g:SuperTabDefaultCompletionType = "context"
 "============================================================= [ /super-tab ]
 
 
-" Ultisnips :
-let g:UltiSnipsExpandTrigger       = "<c-j>"
-let g:UltiSnipsJumpBackwardTrigger = "<c-k>"
-let g:UltiSnipsJumpForwardTrigger  = "<c-j>"
-"============================================================= [ /ultisnips ]
-
-
 " Tagbar :
 let g:tagbar_autofocus = 1
 nmap à :TagbarToggle<CR>
@@ -207,8 +214,8 @@ nmap à :TagbarToggle<CR>
 
 
 " NERDTree :
-let g:NERDTreeDirArrowExpandable = '▸'
 let g:NERDTreeDirArrowCollapsible = '▾'
+let g:NERDTreeDirArrowExpandable = '▸'
 let g:NERDTreeIndicatorMapCustom = {
     \ "Modified"  : "✹",
     \ "Staged"    : "✚",
@@ -258,15 +265,14 @@ set tabstop=2
 set ttyfast
 set wrap
 
-" Hacks :
-"Activate very magic :
-nnoremap / /\v
-vnoremap / /\v
 cnoremap %s/ %smagic/
 cnoremap \>s/ \>smagic/
+nnoremap / /\v
 nnoremap :g/ :g/\v
 nnoremap :g// :g//
+vnoremap / /\v
 
+map <leader>fw :FixWhitespace<cr>
 nmap <cr> o<esc>
 
 highlight CursorLineNr ctermfg=red cterm=none
@@ -274,10 +280,10 @@ highlight LineNr ctermfg=DarkGrey cterm=none
 highlight Search ctermbg=black ctermfg=white
 
 "Moving lines up/down :
-nnoremap <down> :m .+1<CR>==
-nnoremap <up> :m .-2<CR>==
 inoremap <down> <Esc>:m .+1<CR>==gi
 inoremap <up> <Esc>:m .-2<CR>==gi
+nnoremap <down> :m .+1<CR>==
+nnoremap <up> :m .-2<CR>==
 vnoremap <down> :m '>+1<CR>gv=gv
 vnoremap <up> :m '<-2<CR>gv=gv
 "====================================================== [ /my-configuration ]
