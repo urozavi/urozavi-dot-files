@@ -145,12 +145,21 @@ Plugin 'majutsushi/tagbar'
 Plugin 'amirh/HTML-AutoCloseTag'
 Plugin 'arnaud-lb/vim-php-namespace'
 Plugin 'stephpy/vim-php-cs-fixer'
+Plugin 'Shougo/vimproc.vim'
+Plugin 'm2mdas/phpcomplete-extended'
+Plugin 'm2mdas/phpcomplete-extended-laravel'
+Plugin 'jwalton512/vim-blade'
 
 call vundle#end()
 filetype plugin indent on
 
 "================================================================ [ /vundle ]
 
+
+" PhpcompleteExtended :
+autocmd  FileType  php setlocal omnifunc=phpcomplete_extended#CompletePHP
+let g:phpcomplete_index_composer_command = 'composer'
+"================================================== [ /phpcomplete-extended ]
 
 " PhpCsFixer :
 let g:php_cs_fixer_config = "default"
@@ -186,10 +195,6 @@ let g:syntastic_php_phpcs_args = '--standard=PSR2'
 let g:syntastic_style_error_symbol = '✗'
 let g:syntastic_style_warning_symbol = '⚠'
 let g:syntastic_warning_symbol='⚠'
-
-set statusline+=%#warningmsg#
-set statusline+=%*
-set statusline+=%{SyntasticStatuslineFlag()}
 "============================================================= [ /syntastic ]
 
 
@@ -253,7 +258,6 @@ set encoding=utf-8
 set expandtab
 set fileencoding=utf-8
 set fileencodings=utf-8
-set history=500
 set linebreak
 set number
 set relativenumber
@@ -264,6 +268,8 @@ set softtabstop=2
 set tabstop=2
 set ttyfast
 set wrap
+set hidden
+set esckeys
 
 cnoremap %s/ %smagic/
 cnoremap \>s/ \>smagic/
@@ -278,6 +284,7 @@ nmap <cr> o<esc>
 highlight CursorLineNr ctermfg=red cterm=none
 highlight LineNr ctermfg=DarkGrey cterm=none
 highlight Search ctermbg=black ctermfg=white
+highlight MatchParen ctermbg=none cterm=bold
 
 "Moving lines up/down :
 inoremap <down> <Esc>:m .+1<CR>==gi

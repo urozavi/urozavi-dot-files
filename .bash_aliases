@@ -16,4 +16,5 @@ alias l='ls -CF'
 alias s="clear && git status"
 alias l="clear && git log --oneline --graph --decorate --all"
 alias d="clear && git diff "
-alias ctags="ctags -R --fields=+aimS --languages=php --PHP-kinds=+cf --regex-php=/^[ \t]*trait[ \t]+([a-z0_9_]+)/\1/t,traits/i"
+alias ctags="ctags -R --fields=+aimS --languages=php --PHP-kinds=+cf --regex-php='/^[ \t]*trait[ \t]+([a-z0_9_]+)/\1/t,traits/i'"
+alias php="php -dzend_extension=/opt/xdebug-2.4.0RC3/modules/xdebug.so"
