@@ -129,6 +129,7 @@ Plugin 'tmux-plugins/vim-tmux'
 Plugin 'pangloss/vim-javascript'
 Plugin 'mattn/emmet-vim'
 Plugin 'othree/html5.vim'
+Plugin 'othree/yajs.vim'
 Plugin 'hail2u/vim-css3-syntax'
 Plugin 'cakebaker/scss-syntax.vim'
 Plugin 'burnettk/vim-angular'
@@ -149,10 +150,10 @@ Plugin 'Shougo/vimproc.vim'
 Plugin 'm2mdas/phpcomplete-extended'
 Plugin 'm2mdas/phpcomplete-extended-laravel'
 Plugin 'jwalton512/vim-blade'
+Plugin 'KabbAmine/zeavim.vim'
 
 call vundle#end()
 filetype plugin indent on
-
 "================================================================ [ /vundle ]
 
 
@@ -160,6 +161,7 @@ filetype plugin indent on
 autocmd  FileType  php setlocal omnifunc=phpcomplete_extended#CompletePHP
 let g:phpcomplete_index_composer_command = 'composer'
 "================================================== [ /phpcomplete-extended ]
+
 
 " PhpCsFixer :
 let g:php_cs_fixer_config = "default"
@@ -266,7 +268,6 @@ set shiftwidth=2
 set smarttab
 set softtabstop=2
 set tabstop=2
-set ttyfast
 set wrap
 set hidden
 set esckeys
@@ -281,16 +282,27 @@ vnoremap / /\v
 map <leader>fw :FixWhitespace<cr>
 nmap <cr> o<esc>
 
-highlight CursorLineNr ctermfg=red cterm=none
+highlight CursorLineNr ctermfg=black cterm=bold
 highlight LineNr ctermfg=DarkGrey cterm=none
 highlight Search ctermbg=black ctermfg=white
 highlight MatchParen ctermbg=none cterm=bold
+highlight SyntasticWarningSign ctermbg=none ctermfg=cyan
+highlight SyntasticWarning ctermbg=none
 
-"Moving lines up/down :
 inoremap <down> <Esc>:m .+1<CR>==gi
 inoremap <up> <Esc>:m .-2<CR>==gi
 nnoremap <down> :m .+1<CR>==
 nnoremap <up> :m .-2<CR>==
 vnoremap <down> :m '>+1<CR>gv=gv
 vnoremap <up> :m '<-2<CR>gv=gv
+
+function! GitBranch()
+  let branch = system("git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* //'")
+  if branch != ''
+    return substitute(branch, '\n', '', 'g')
+  end
+  return ''
+endfunction
+
+set statusline=(%{GitBranch()})\ %f\ b%n\ %M%R%H%W%Y\ %v:%B\ %=%l/%L\ %P\|%p%%
 "====================================================== [ /my-configuration ]
