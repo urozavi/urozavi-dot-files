@@ -9,3 +9,4 @@
 !.profile
 !.tmux.conf
 !.vimrc
+!.*-completion.bash

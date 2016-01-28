@@ -12,7 +12,27 @@
 if [ -n "$BASH_VERSION" ]; then
     # include .bashrc if it exists
     if [ -f "$HOME/.bashrc" ]; then
-	. "$HOME/.bashrc"
+	    . "$HOME/.bashrc"
+    fi
+
+    # include the completion for wp-cli
+    if [ -f "$HOME/.wp-completion.bash" ]; then
+      . "$HOME/.wp-completion.bash"
+    fi
+
+    # include the completion for git
+    if [ -f "$HOME/.git-completion.bash" ]; then
+      . "$HOME/.git-completion.bash"
+    fi
+
+    # include npm completion
+    if [ -f "$HOME/.npm-completion.bash" ]; then
+      . "$HOME/.npm-completion.bash"
+    fi
+
+    # include composer completion
+    if [ -f "$HOME/.composer-completion.bash" ]; then
+      . "$HOME/.composer-completion.bash"
     fi
 fi
 
