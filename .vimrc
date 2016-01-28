@@ -157,6 +157,13 @@ filetype plugin indent on
 "================================================================ [ /vundle ]
 
 
+" Wordpress.vim
+let g:syntastic_wordpress_checkers = ['phpcs']
+let g:syntastic_wordpress_phpcs_standard = "psr2"
+let g:syntastic_wordpress_phpcs_standard_file = "phpcs.xml"
+"========================================================= [ /wordpress.vim ]
+
+
 " PhpcompleteExtended :
 autocmd  FileType  php setlocal omnifunc=phpcomplete_extended#CompletePHP
 let g:phpcomplete_index_composer_command = 'composer'
