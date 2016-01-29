@@ -193,6 +193,7 @@ highlight SyntasticErrorSign ctermbg=none ctermfg=red
 highlight SyntasticStyleError ctermbg=none
 highlight SyntasticStyleWarning ctermbg=none
 highlight SyntasticStyleWarningSign ctermbg=none ctermfg=yellow
+highlight ColorColumn ctermbg=darkyellow
 
 let g:syntastic_aggregate_errors = 1
 let g:syntastic_always_populate_loc_list = 1
@@ -268,8 +269,6 @@ set expandtab
 set fileencoding=utf-8
 set fileencodings=utf-8
 set linebreak
-set number
-set relativenumber
 set scrolloff=7
 set shiftwidth=2
 set smarttab
@@ -278,6 +277,8 @@ set tabstop=2
 set wrap
 set hidden
 set esckeys
+set ff=unix
+set background=light
 
 cnoremap %s/ %smagic/
 cnoremap \>s/ \>smagic/
@@ -287,7 +288,6 @@ nnoremap :g// :g//
 vnoremap / /\v
 
 map <leader>fw :FixWhitespace<cr>
-nmap <cr> o<esc>
 
 highlight CursorLineNr ctermfg=black cterm=bold
 highlight LineNr ctermfg=DarkGrey cterm=none
