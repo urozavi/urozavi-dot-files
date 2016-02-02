@@ -25,6 +25,7 @@ Plugin 'majutsushi/tagbar'
 Plugin 'stephpy/vim-php-cs-fixer'
 Plugin 'jwalton512/vim-blade'
 Plugin 'KabbAmine/zeavim.vim'
+Plugin 'Chiel92/vim-autoformat'
 
 call vundle#end()
 filetype plugin indent on
@@ -162,4 +163,6 @@ function! GitBranch()
 endfunction
 
 set statusline=(%{GitBranch()})\ %f\ b%n\ %M%R%H%W%Y\ %v:%B\ %=%l/%L\ %P\|%p%%
+
+nnoremap <leader>fhp :set filetype=html syntax=php<cr><esc>ggvG=
 "====================================================== [ /my-configuration ]
